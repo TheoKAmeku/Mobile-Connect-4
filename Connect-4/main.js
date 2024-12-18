@@ -1,3 +1,17 @@
+/ Elements
+const allCells = document.querySelectorAll('.cell:not(.row-top)')
+const topCells = document.querySelectorAll('.cell.row-top')
+const resetButton = document.querySelector('.reset')
+const gameStatusText = document.querySelector('.status')
+const openNetworkMenuButton = document.getElementById("open-network-menu")
+const openConnectionButton = document.getElementById("open-connection")
+const closeConnectionButton = document.getElementById("close-connection")
+const enterMatchMakingButton = document.getElementById("enter-matchmaking")
+const exitMatchMakingButton = document.getElementById("exit-matchmaking")
+const exitOnlineMatchButton = document.getElementById("exit-online-match")
+const networkingText = document.getElementById("networking-text")
+const closeNetworkMenuButton = document.getElementById("close-network-menu")
+
 let socket;
 const url = 'https://uni-connect-4-server.glitch.me/';
 const onlineData = { isconnected: false, inPool: false, inRoom: false, roomId: null, isUsersTurn: null };
