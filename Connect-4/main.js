@@ -375,6 +375,15 @@ function addToTopCell(colIndex) {
 }
 
 // Event Handlers
+function handleRestartButton() {
+  if (onlineData.isconnected && onlineData.inRoom) {
+    const data = { type: "game", command: "restart", data: { roomId: onlineData.roomId} }
+    sendMessageToServer(data)
+  }
+  
+  restartGame()
+}
+
 function handleCellMouseOver(event) {
   if (!isPlaying || isMobile()) {
     return;
@@ -392,13 +401,28 @@ function handleCellMouseOut(event) {
   clearTopCellColor(colIndex)
 }
 
-function handleCellClick(event) {
+function handleClick(event) {
+  if (onlineData.isconnected && onlineData.inRoom) {
+    if (onlineData.isUsersTurn) {
+      handleCellClick(event, true)
+    }
+  }
+  else {
+    handleCellClick(event, false)
+  }
+}
+
+function handleCellClick(event, sendOnline) {
   if (!isPlaying) {
     return;
   }
 
+  if (sendOnline) {
+    sendMoveDataOnline(event)
+  }
+
   const cell = event.target
-  const [rowIndex, colIndex] = locateCell(cell)
+  const [rowIndex, colIndex] = locateCell(cell, sendOnline)
 
   const openCell = findOpenCellByColumn(colIndex)
 
@@ -416,7 +440,16 @@ function handleCellClick(event) {
 
   isYellowColor = !isYellowColor
   clearTopCellColor(colIndex)
-  addToTopCell(colIndex)
+
+  if (onlineData.isconnected) {
+    if (onlineData.isUsersTurn) {
+      addToTopCell(colIndex)
+    }
+    onlineData.isUsersTurn = !onlineData.isUsersTurn;
+  }
+  else if (isPlaying) {
+    addToTopCell(colIndex)
+  }
 }
 
 function handleOpenMenu() {
@@ -438,11 +471,11 @@ for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', handleCellMouseOver)
     cell.addEventListener('mouseout', handleCellMouseOut)
-    cell.addEventListener('click', handleCellClick)
+    cell.addEventListener('click', handleClick)
   }
 }
 
-resetButton.addEventListener('click', restartGame)
+resetButton.addEventListener('click', handleRestartButton)
 openNetworkMenuButton.addEventListener("click", handleOpenMenu)
 closeNetworkMenuButton.addEventListener("click", handleCloseMenu)
 openConnectionButton.addEventListener('click', openConnection)
