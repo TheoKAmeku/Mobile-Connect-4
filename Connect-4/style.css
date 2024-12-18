@@ -163,9 +163,20 @@
     border-radius: 4px;
 }
 
-.netork-button {
-    position: relative;
-    margin: 5px;
+.network-button {
+  position: relative;
+  background-color: #cc1919;
+  color: #fff;
+  padding: 12px;
+  margin: 5px;
+  font-size: 13px;
+  text-align: center;
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #close-connection {
