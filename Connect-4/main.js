@@ -12,6 +12,12 @@ const exitOnlineMatchButton = document.getElementById("exit-online-match")
 const networkingText = document.getElementById("networking-text")
 const closeNetworkMenuButton = document.getElementById("close-network-menu")
 
+// Variables
+const columns = []
+const topRow = []
+const rows = []
+let isPlaying = true
+let isYellowColor = true
 let socket;
 const url = 'https://uni-connect-4-server.glitch.me/';
 const onlineData = { isconnected: false, inPool: false, inRoom: false, roomId: null, isUsersTurn: null };
