@@ -179,6 +179,18 @@
   transition: all 0.3s ease;
 }
 
+.network-button:hover {
+  background-color: #45a049;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5); 
+  transform: translateY(-2px);
+}
+
+.network-button:active {
+  background-color: #660000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+}
+
 #close-connection {
     display: none;
 }
