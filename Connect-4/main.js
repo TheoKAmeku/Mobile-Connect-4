@@ -1,4 +1,4 @@
-/ Elements
+// Elements
 const allCells = document.querySelectorAll('.cell:not(.row-top)')
 const topCells = document.querySelectorAll('.cell.row-top')
 const resetButton = document.querySelector('.reset')
@@ -140,15 +140,6 @@ function exitOnlineMatch() {
 
     exitOnlineRoom()
 }
-
-const openNetworkMenuButton = document.getElementById("open-network-menu");
-const closeNetworkMenuButton = document.getElementById("close-network-menu")
-const openConnectionButton = document.getElementById("open-connection");
-const closeConnectionButton = document.getElementById("close-connection");
-const enterMatchMakingButton = document.getElementById("enter-matchmaking");
-const exitMatchMakingButton = document.getElementById("exit-matchmaking");
-const exitOnlineMatchButton = document.getElementById("exit-online-match");
-const networkingText = document.getElementById("networking-text");
 
 const handleOpenMenu = () => {
     const networkOverlay = document.getElementById("network-overlay")
