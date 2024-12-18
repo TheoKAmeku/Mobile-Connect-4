@@ -91,17 +91,25 @@
     max-width: 700px;
   }
 
-  .reset {
-    background-color: #4370F1;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 15px 30px;
-    text-transform: uppercase;
-  }
+.reset {
+  background-color: #4370F1;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 15px 30px;
+  text-transform: uppercase;
+}
+
+.reset:hover {
+  background-color: #1D50F1;
+}
+
+.reset:active {
+  background-color: #4d7ef1;
+}
 
 #network-overlay {
     display: none;
