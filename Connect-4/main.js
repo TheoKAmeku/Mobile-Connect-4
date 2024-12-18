@@ -12,10 +12,45 @@ const exitOnlineMatchButton = document.getElementById("exit-online-match")
 const networkingText = document.getElementById("networking-text")
 const closeNetworkMenuButton = document.getElementById("close-network-menu")
 
+// Variables
+const columns = []
+const topRow = []
+const rows = []
+let isPlaying = true
+let isYellowColor = true
 let socket;
 const url = 'https://uni-connect-4-server.glitch.me/';
 const onlineData = { isconnected: false, inPool: false, inRoom: false, roomId: null, isUsersTurn: null };
 
+// Columns
+for (let i = 0; i < allCells.length ; i++) {
+  const column = [
+    allCells[35 + i],
+    allCells[28 + i],
+    allCells[21 + i],
+    allCells[14 + i],
+    allCells[7 + i],
+    allCells[i],
+    topCells[i]
+  ]
+
+  columns.push(column)
+}
+
+// Rows
+for (let i = 0; i < topCells.length ; i++) {
+  topRow.push(topCells[i])
+}
+
+for (let i = 0 ; i < allCells.length ; i = i + 7) {
+  const row = []
+  for (let j = 0 ; j < 7 ; j++) {
+    const oneCell = allCells[i + j]
+    row.push(oneCell)
+  }
+
+  rows.push(row)
+}
 
 function openConnection() {
     if (!onlineData.isconnected) {
@@ -155,7 +190,7 @@ const handleCloseMenu = () => {
     openNetworkMenuButton.style.display = "block"
 }
 
-
+resetButton.addEventListener('click', restartGame)
 openNetworkMenuButton.addEventListener("click", handleOpenMenu);
 closeNetworkMenuButton.addEventListener("click", handleCloseMenu);
 openConnectionButton.addEventListener('click', openConnection);
