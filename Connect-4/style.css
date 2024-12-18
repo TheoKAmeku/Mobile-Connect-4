@@ -50,6 +50,39 @@
     height: 75%;
   }
 
+  .cell:not(.row-top).red::after {
+    background: red;
+  }
+  .cell:not(.row-top).yellow::after {
+    background: yellow;
+  }
+  
+  .cell:not(.row-top).red.win {
+    background: red;
+  }
+  
+  .cell:not(.row-top).yellow.win {
+    background: yellow;
+  }
+  
+  .cell.row-top {
+    background: white;
+  }
+  
+  .cell.row-top::after {
+    border: none;
+  }
+  
+  .cell.row-top.red::after {
+    background: red;
+    border: 3px solid black;
+  }
+  
+  .cell.row-top.yellow::after {
+    background: yellow;
+    border: 3px solid black;
+  }
+
 #network-overlay {
     display: none;
     position: relative;
