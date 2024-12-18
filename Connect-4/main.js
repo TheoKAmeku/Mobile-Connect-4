@@ -18,9 +18,11 @@ const topRow = []
 const rows = []
 let isPlaying = true
 let isYellowColor = true
-let socket;
-const url = 'https://uni-connect-4-server.glitch.me/';
-const onlineData = { isconnected: false, inPool: false, inRoom: false, roomId: null, isUsersTurn: null };
+let socket
+const url = 'https://uni-connect-4-server.glitch.me/'
+const onlineData = { isconnected: false, inPool: false, inRoom: false, roomId: null, isUsersTurn: null }
+
+// Setup Values
 
 // Columns
 for (let i = 0; i < allCells.length ; i++) {
@@ -50,6 +52,39 @@ for (let i = 0 ; i < allCells.length ; i = i + 7) {
   }
 
   rows.push(row)
+}
+
+// Functions
+function isMobile() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/.test(navigator.userAgent);
+}
+
+function openConnection() {
+  if (!onlineData.isconnected) {
+    socket = new WebSocket(url)
+
+    socket.onopen = () => {
+      onlineData.isconnected = true;
+      
+      openConnectionButton.style.display = "none"
+      enterMatchMakingButton.style.display = "inline-block"
+      closeConnectionButton.style.display = "inline-block"
+      networkingText.innerHTML = "Connected to server"
+    }
+
+    socket.onmessage = (message) => {
+      handleMessage(JSON.parse(message.data))
+    }
+
+    socket.onclose = () => {
+      //socket.send(JSON.stringify({ inRoom: onlineData.inRoom, inPool: onlineData.inPool, roomId: onlineData.roomId }))
+      onlineData.isconnected = false;
+      openConnectionButton.style.display = "inline-block"
+      enterMatchMakingButton.style.display = "none"
+      closeConnectionButton.style.display = "none"
+      networkingText.innerHTML = "Disconnected from server"
+    }
+  }
 }
 
 function closeConnection() {
