@@ -161,7 +161,7 @@ const handleCloseMenu = () => {
     openNetworkMenuButton.style.display = "block"
 }
 
-
+resetButton.addEventListener('click', restartGame)
 openNetworkMenuButton.addEventListener("click", handleOpenMenu);
 closeNetworkMenuButton.addEventListener("click", handleCloseMenu);
 openConnectionButton.addEventListener('click', openConnection);
