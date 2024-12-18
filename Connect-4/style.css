@@ -40,6 +40,16 @@
     height: 100%;
   }
 
+  .cell::after {
+    background: white;
+    border-radius: 50%;
+    border: 3px solid black;
+    content: '';
+    cursor: pointer;
+    width: 75%;
+    height: 75%;
+  }
+
 #network-overlay {
     display: none;
     position: relative;
